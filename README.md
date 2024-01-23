@@ -1,40 +1,153 @@
-<p align="center">
-  <img src="./static/frontend-logo.svg" height="280" width="280">
-</p>
 
-Frontend Web is a REACTJS based application that is main frontend UI of [OT-Microservices](https://github.com/OT-MICROSERVICES) stack. This application supports cross-platform, the only thing will be required to run this application is javarscript runtime modules.
+# Frontend Setup 
 
-Supported features of the application are:-
+***
+## Introduction
+Frontend Web is a REACTJS based application that is the primary user-interface for OT-Microservices stack.The app is designed for cross-platform fuctionality and requires only the presence of javascript runtime modules.The ReactJS based web framework facilitates complete web page based operations.
 
-- ReactJS based web framework for the complete web page based operations
-- Test case integration for application functionality verification
+## Key Components
+**REACTJS Framework**: The frontend uses REACTJS which is a declarative, efficient, and flexible JavaScript library for building user interfaces, particularly single-page applications where components update efficiently in response to data changes.
+***
+## Pre-requisites
+The frontend application have dependencies on other REST API of **[OT-Microservices](https://github.com/OT-MICROSERVICES)**. To run the application successfully, we need these things configured:
 
-## Pre-Requisites
+* **[Employee API](https://github.com/avengers-p7/Documentation/blob/main/OT%20Micro%20Services/Application/Employee_API.md)**
+* **[Attendance API](https://github.com/avengers-p7/Documentation/blob/main/OT%20Micro%20Services/Application/Attendance_API.md)**
+* **[Salary API](https://github.com/avengers-p7/Documentation/blob/main/OT%20Micro%20Services/Application/Salary_API.md)**
 
-The frontend application have dependencies on other REST API of [OT-Microservices](https://github.com/OT-MICROSERVICES). To run the application successfully, we need these things configured:
+## System Requirements
+| Hardware Specifications | Minimum Recommendation |
+| ----------------------- | ---------------------- |
+| Processor | 1 CPU, t2.micro EC2 | 
+| Ram | 1 GiB |
+| Disk | 8 GB |
+| OS | Ubuntu 22.04 LTS |
+***
+## Dependencies
+### Build time Dependency
+| Name | Version | Description |
+| ---- | ------- | ----------- |
+| GNU make | 4.3 | To build form Makefile |
+| npm | 8.5.1 | Package manager for Javasrcipt |
 
-- [Employee API](https://github.com/OT-MICROSERVICES/employee-api)
-- [Attendance API](https://github.com/OT-MICROSERVICES/attendance-api)
-- [Salary API](https://github.com/OT-MICROSERVICES/salary-api)
+### Run time Dependency
+| Name | Version | Description |
+| ---- | ------- | ----------- |
+| Nodejs | v12.22.9 | Javasrcipt runtime environment |
 
+# Important Ports
+| Inbound Traffic	 | Description |
+| ---------------- | ----------- |
+| 22 | For SSH |
+| 3000 | Default REACTJS port |
+
+***
 ## Architecture
+<img width="600" length="400" alt="Frontend" src="https://github.com/avengers-p7/Documentation/assets/156056413/dcd818bb-7574-406c-9199-69cd2048d074">
 
-![](./static/frontend.png)
+***
+## Step-by-step installation of [application]
+### Step1: Installation of software Dependencies
+#### Install Dependencies:
+* Install GNU make
+    ```shell
+    sudo apt update 
+    sudo apt install make
+    ```
+    ![Screenshot from 2024-01-16 14-50-37](https://github.com/avengers-p7/Documentation/assets/156056413/ca99a9e8-1ad7-4a50-864b-3f5e36dd322d)
 
-## Application
+* Install NPM
+    ```shell
+    sudo apt install npm
+    ```
+    ![Screenshot from 2024-01-16 14-52-07](https://github.com/avengers-p7/Documentation/assets/156056413/dad28260-d3bc-42c5-9fdd-630512fdb8d9)
 
-For building the application, we can use make command with our Makefile. But as first and foremost step, we need to install all the dependencies and packages using `npm`. We can simple use make command for it.
 
-```makefile
-make build
-```
+### Step2: Build Generation
+* Create index.html file    
+  Create a directory name public and create index.html file inside it with the following content:  
+    ```shell
+       <!DOCTYPE html>
+       <html lang="en">
+        <head>
+          <meta charset="utf-8" />
+          <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="theme-color" content="#000000" />
+          <meta
+           name="description"
+           content="Web site created using create-react-app"
+            />
+          <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+          <!--
+          manifest.json provides metadata used when your web app is installed on a
+          user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-    manifest/
+          -->
+          <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+          <!--
+          Notice the use of %PUBLIC_URL% in the tags above.
+          It will be replaced with the URL of the `public` folder during the build.
+          Only files inside the `public` folder can be referenced from the HTML.
+          Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+          work correctly both with client-side routing and a non-root public URL.
+          Learn how to configure a non-root public URL by running `npm run build`.
+          -->
+          <title>React App</title>
+        </head>
+        <body>
+          <noscript>You need to enable JavaScript to run this app.</noscript>
+          <div id="root"></div>
+          <!--
+          This HTML file is a template.
+          If you open it directly in the browser, you will see an empty page.
+          You can add webfonts, meta tags, or analytics to this file.
+          The build step will place the bundled scripts into the <body> tag.
+          To begin the development, run `npm start` or `yarn start`.
+          To create a production bundle, use `npm run build` or `yarn build`.
+          -->
+        </body>
+     </html>
+    ```
+*  Set the maximum heap size (memory limit)
+    ```shell
+    export NODE_OPTIONS="--max-old-space-size=512"
+    ```
+* Build the Application 
+    ```shell
+    make build
+    ```
+    ![Screenshot from 2024-01-16 14-53-09](https://github.com/avengers-p7/Documentation/assets/156056413/00874384-f41e-4c02-bd06-94eb66a1e68b)
+    Once the build is successfull it is ready to be deployed.
+    ![Screenshot from 2024-01-16 14-58-43](https://github.com/avengers-p7/Documentation/assets/156056413/dd8c438c-f596-412a-a788-830c893a5eeb)
 
-For building the docker image artifact of the frontend web, we can invoke another make command.
+### Step3: Application Deployment
+* Run the following command
+    ```shell
+    npm start
+    ```
+    ![Screenshot from 2024-01-16 15-01-59](https://github.com/avengers-p7/Documentation/assets/156056413/a3111a70-3407-4751-bde2-fd4fdc8444f4)
 
-```makefile
-make docker-build
-```
+    Once the above command is run, the frontend becomes accessible via browser at http://(host-ip):3000
+    <img width="700" length="400" alt="Final Output" src="https://github.com/avengers-p7/Documentation/assets/156056413/f0c58cd1-7f39-445b-a90e-5edf2360b621">
+***
+## Troubleshoot
+**Javascript heap out of memory error**
+During the build phase one might encounter javascript heap out of memory error.
+![Screenshot from 2024-01-16 00-25-27](https://github.com/avengers-p7/Documentation/assets/156056413/d5202499-699c-496e-a874-7b7662e26c7b)
+This can be resolved using `export NODE_OPTIONS="--max-old-space-size=512"`    
+**NOTE:** Ideally the size should not be more than half the size of memory(RAM) .
 
-## Contact Information
+***
+# Contact Information
 
-[Opstree Opensource](opensource@opstree.com)
+| Name                 | Contact Information                                                                                     
+|---------------------------------|------------------------------------------------------------|
+| Aakash Tripathi                 |  aakash.tripathi.snaatak@mygurukulam.co
+***
+# References
+
+|     Description                  | References  
+| ---------------------------------| ------------------------------------------------------------------- |
+| Frontend API | https://github.com/OT-MICROSERVICES/frontend |
+| Javascript heap out of memory error |https://geekflare.com/fix-javascript-heap-out-of-memory-error/ | 
+| Default index file for public folder | https://github.com/react-cosmos/create-react-app-example/blob/master/public/index.html |
